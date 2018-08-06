@@ -7,6 +7,7 @@ library(rgdal)
 library(rgeos)
 library(plyr)
 library(gpclib)
+library(maptools)
 #gpclibPermit()
 
 
@@ -52,10 +53,10 @@ shinyServer(function(input, output) {
   output$trend <- renderPlot({
     ggplot() +
       geom_bar(data=total.pop.data, aes(x=year+0.1, y=pop/pop.scale, fill='Australia'), width=0.7, color="white", stat="identity") +
-      geom_smooth(data=total.pop.data, aes(x=year+0.1, y=pop/pop.scale), method="loess", size=1.2) +
+      #geom_smooth(data=total.pop.data, aes(x=year+0.1, y=pop/pop.scale), method="loess", size=1.2) +
       
       geom_bar(data=region.pop.data(), aes(x=year-0.1, y=pop/pop.scale, fill=region), width=0.7, color="white", stat="identity") +
-      geom_smooth(data=region.pop.data(), aes(x=year-0.1, y=pop/pop.scale), method="loess", size=1.2) +
+      #geom_smooth(data=region.pop.data(), aes(x=year-0.1, y=pop/pop.scale), method="loess", size=1.2) +
       
       labs(x="Year", y="Population (in thousands)") +
       ggtitle(paste('Population in', input$region, 'vs entire Australia')) +
